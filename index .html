@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辐射防护法规智库 | 霍格沃兹档案馆</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f5f3ef;
+            font-family: 'Georgia', 'Times New Roman', 'Palatino', 'Book Antiqua', serif;
+            color: #2c2a24;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        /* 头部典雅风格 */
+        .header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid #bc9a6c;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #3e3a2e;
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+        }
+        .header p {
+            color: #7a6e58;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        /* 分类导航 */
+        .category-row {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .main-btn {
+            background: transparent;
+            border: 1px solid #bc9a6c;
+            padding: 0.5rem 1.6rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #4e4637;
+            font-family: 'Georgia', serif;
+            letter-spacing: 0.5px;
+        }
+        .main-btn.active {
+            background: #bc9a6c;
+            border-color: #bc9a6c;
+            color: white;
+        }
+        .sub-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e1d9cf;
+        }
+        .sub-btn {
+            background: none;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            color: #7a6e58;
+            border-radius: 20px;
+            transition: 0.2s;
+            font-family: 'Georgia', serif;
+        }
+        .sub-btn.active {
+            background: #e9e2d7;
+            color: #bc9a6c;
+            font-weight: 500;
+        }
+        /* 法规卡片 */
+        .reg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e4dbce;
+            overflow: hidden;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        .card-header {
+            padding: 1rem 1.5rem 0.6rem;
+            border-bottom: 1px solid #f0e9df;
+        }
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #5b4a2e;
+            font-family: 'Georgia', serif;
+        }
+        .meta {
+            font-size: 0.7rem;
+            color: #aa9c84;
+            margin-top: 0.4rem;
+            letter-spacing: 0.3px;
+        }
+        .card-body {
+            padding: 0.8rem 1.5rem 1.2rem;
+            flex: 1;
+        }
+        .desc {
+            font-size: 0.85rem;
+            color: #6a6354;
+            margin-bottom: 1.2rem;
+            line-height: 1.45;
+        }
+        .btn {
+            display: inline-block;
+            background: #f3eee7;
+            border: 1px solid #dacdbd;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            color: #5b4a2e;
+            transition: 0.1s;
+            font-family: 'Georgia', serif;
+        }
+        .btn-primary {
+            background: #bc9a6c;
+            border-color: #bc9a6c;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #a27f52;
+        }
+        /* 对比模块 */
+        .comparison-section {
+            margin: 2rem 0 2rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #5b4a2e;
+            margin-bottom: 1.2rem;
+            padding-left: 0.2rem;
+            border-left: 4px solid #bc9a6c;
+            font-family: 'Georgia', serif;
+        }
+        .comparison-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .comparison-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e4dbce;
+            overflow: hidden;
+        }
+        .comparison-header {
+            background: #faf8f3;
+            padding: 0.9rem 1.5rem;
+            border-bottom: 1px solid #e9e1d4;
+            font-weight: 600;
+            color: #5b4a2e;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+        }
+        .comparison-body {
+            padding: 1.2rem 1.5rem;
+        }
+        .version-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed #eee4d8;
+            padding-bottom: 0.8rem;
+        }
+        .version-old, .version-new {
+            flex: 1;
+            min-width: 200px;
+        }
+        .version-old h4, .version-new h4 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #8b7656;
+            font-family: 'Georgia', serif;
+        }
+        .diff-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+        .diff-list li {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+            color: #5e5849;
+        }
+        .diff-list li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #bc9a6c;
+        }
+        .highlight {
+            background: #fef8ef;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #7a694c;
+            border-left: 3px solid #bc9a6c;
+            font-style: italic;
+        }
+        /* 评论区 */
+        .comment-section {
+            background: #ffffffea;
+            border-radius: 28px;
+            padding: 1.2rem 1.8rem;
+            border: 1px solid #e4dbce;
+            margin-top: 1rem;
+        }
+        .comment-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #5b4a2e;
+            font-family: 'Georgia', serif;
+            letter-spacing: 0.5px;
+        }
+        .comment-list {
+            max-height: 280px;
+            overflow-y: auto;
+            background: #fefcf8;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #efe5d9;
+        }
+        .comment-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0e8de;
+        }
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+        .comment-name {
+            font-weight: 600;
+            color: #bc9a6c;
+            font-size: 0.85rem;
+            font-family: 'Georgia', serif;
+        }
+        .comment-time {
+            font-size: 0.7rem;
+            color: #b1a187;
+            margin-left: 8px;
+        }
+        .comment-text {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            color: #6a5e48;
+            line-height: 1.4;
+        }
+        .add-comment {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .add-comment input, .add-comment textarea {
+            background: #ffffff;
+            border: 1px solid #e4dbce;
+            border-radius: 28px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+            color: #3e382c;
+        }
+        .add-comment button {
+            background: #bc9a6c;
+            border: none;
+            padding: 8px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            color: white;
+            transition: 0.2s;
+            font-family: 'Georgia', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .add-comment button:hover {
+            background: #a27f52;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #b2a07e;
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e4dbce;
+            font-style: italic;
+        }
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .reg-grid { gap: 1.2rem; }
+            .version-old, .version-new { flex: 100%; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>辐射防护法规智库</h1>
+        <p>霍格沃兹档案馆 · 永续之卷</p>
+    </div>
+
+    <div class="category-row">
+        <button class="main-btn active" data-main="foreign">国外法典</button>
+        <button class="main-btn" data-main="domestic">国内敕令</button>
+    </div>
+
+    <div id="subNav" class="sub-nav"></div>
+    <div id="regGrid" class="reg-grid"></div>
+
+    <!-- 新旧对比模块 -->
+    <div class="comparison-section">
+        <div class="section-title">标准新旧对比 · 窥见演进之迹</div>
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <div class="comparison-header">ICRP 60 (1991) 与 ICRP 103 (2007)</div>
+                <div class="comparison-body">
+                    <div class="version-row">
+                        <div class="version-old">
+                            <h4>ICRP 60</h4>
+                            <ul class="diff-list">
+                                <li>防护情境分为“实践”与“干预”</li>
+                                <li>职业限值：20 mSv/年 (5年平均)</li>
+                                <li>公众限值：1 mSv/年</li>
+                                <li>最优化以成本效益为主</li>
+                            </ul>
+                        </div>
+                        <div class="version-new">
+                            <h4>ICRP 103</h4>
+                            <ul class="diff-list">
+                                <li>三类情境：计划、应急、现存</li>
+                                <li>剂量约束与参考水平引入</li>
+                                <li>强化利益相关方参与</li>
+                                <li>医疗照射防护细化</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="highlight">演进意义：从二元论到三类情境，为国际安全标准奠定新基石。</div>
+                </div>
+            </div>
+            <div class="comparison-card">
+                <div class="comparison-header">GBZ 130-2013 与 GBZ 130-2020 放射诊断防护要求</div>
+                <div class="comparison-body">
+                    <div class="version-row">
+                        <div class="version-old">
+                            <h4>旧版 2013</h4>
+                            <ul class="diff-list">
+                                <li>防护性能要求较宽泛</li>
+                                <li>机房屏蔽简单铅当量规定</li>
+                                <li>介入防护关注不足</li>
+                            </ul>
+                        </div>
+                        <div class="version-new">
+                            <h4>新版 2020</h4>
+                            <ul class="diff-list">
+                                <li>细化设备性能指标</li>
+                                <li>引入剂量约束值</li>
+                                <li>强制介入防护用品与剂量监测</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="highlight">显著提升介入与移动设备防护，与国际规范接轨。</div>
+                </div>
+            </div>
+            <div class="comparison-card">
+                <div class="comparison-header">GB 18871-2002 与修订前瞻</div>
+                <div class="comparison-body">
+                    <div class="version-row">
+                        <div class="version-old">
+                            <h4>现行 2002</h4>
+                            <ul class="diff-list">
+                                <li>基于 ICRP 60，实践/干预分类</li>
+                                <li>剂量限值经典体系</li>
+                                <li>医疗照射原则性要求</li>
+                            </ul>
+                        </div>
+                        <div class="version-new">
+                            <h4>修订方向 (ICRP 103)</h4>
+                            <ul class="diff-list">
+                                <li>三类照射情境全面引入</li>
+                                <li>剂量约束与参考水平具体化</li>
+                                <li>废物解控水平细化</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="highlight">新版国标将成未来十年监管核心，深刻影响行业实践。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-section">
+        <div class="comment-title">议事厅 · 公开评论</div>
+        <div id="globalCommentList" class="comment-list">
+            <div style="text-align:center; color:#aa9c84;">加载密卷中...</div>
+        </div>
+        <div class="add-comment">
+            <input type="text" id="commentName" placeholder="您的名号" value="匿名巫师">
+            <textarea id="commentMsg" rows="2" placeholder="分享您的见解..."></textarea>
+            <button id="submitCommentBtn">传送评论</button>
+        </div>
+    </div>
+    <footer>所有法规原文件均存放于 <code>files/</code> 目录，点击即可下载。评论区记忆永存于魔法密卷。</footer>
+</div>
+
+<script>
+    // 基于用户提供的文件列表构建数据库（未增删任何文件）
+    const allFiles = [
+        "ICRP103.pdf", "ICRP60.pdf", "ICRP26.pdf", "ICRP118.pdf", "ICRP116.pdf", "ICRP117.pdf", "ICRP139.pdf", "ICRP140.pdf", "ICRP124.pdf", "ICRP132.pdf",
+        "UNSCEAR 2020_2021 Report Volume III-Low dose&rate.pdf",
+        "NCRP Report No. 164 -Uncertainty in Internal Radiation Dosimetry.pdf",
+        "NCRP 158-Uncertainties in the Measurement and Dosimetry of External Radiation - all.pdf",
+        "Radiation Effects & Sources-2016.pdf",
+        "TG94 Draft for Public Consultation (20April2017)138号出版物.pdf",
+        "RELIABILITY OF THE ICRP’S DOSE COEFFICIENTS.pdf",
+        "中华人民共和国放射性污染防治法20030628.docx",
+        "中华人民共和国核安全法.pdf",
+        "放射工作人员健康要求及监护规范GBZ98-2020.pdf",
+        "国家环境保护总局公告国家环境保护总局公告-2005年-第62号关于发布放射源分类办法的公告-放射源分类办法.doc",
+        "WST 613-2018 公众成员的放射性核素年摄入量限值.pdf",
+        "WST 584—2017 人体内放射性核素全身计数测量方法.pdf",
+        "GBZ 129-2016 职业性内照射个人监测规范.pdf",
+        "GBZ 128-2016 职业性外照射个人监测规范.pdf",
+        "HJ 814-2016 水和土壤样品中钚的放射化学分析方法.pdf",
+        "HJ 61-2021 辐射环境监测技术规范.pdf",
+        "GB 18871-2002 电离辐射防护与辐射源安全基本标准.pdf",
+        "HJ 1114-2020 伴生放射性物料贮存及固体废物填埋辐射环境保护技术规范（试行）.pdf",
+        "HJ 1126-2020 水中氚的分析方法.pdf",
+        "20201001 卫生标准：GBZ 130-2020 放射诊断放射防护要求.pdf"
+    ];
+
+    function getDisplayNameAndYear(filename) {
+        let name = filename.replace(/\.(pdf|docx|doc)$/, '');
+        let year = '';
+        const yearMatch = name.match(/\b(19|20)\d{2}\b/);
+        if (yearMatch) year = yearMatch[0];
+        if (name.startsWith("ICRP")) {
+            let num = name.match(/\d+/);
+            if (num) name = `ICRP ${num[0]}号出版物`;
+        } else if (name.includes("GBZ 130-2020")) {
+            name = "GBZ 130-2020 放射诊断放射防护要求";
+        } else if (name.includes("GB 18871")) {
+            name = "GB 18871-2002 电离辐射防护与辐射源安全基本标准";
+        } else if (name.includes("UNSCEAR")) {
+            name = "UNSCEAR 2020/2021 报告 第三卷";
+        } else if (name.includes("NCRP 158")) {
+            name = "NCRP 158 外照射测量不确定度";
+        } else if (name.includes("NCRP Report No. 164")) {
+            name = "NCRP 164 内照射剂量不确定度";
+        }
+        return { name, year };
+    }
+
+    function getCategory(filename) {
+        const f = filename.toLowerCase();
+        if (f.includes("icrp")) return "foreign_icrp";
+        if (f.includes("unscear") || f.includes("ncrp") || f.includes("radiation effects") || f.includes("tg94") || f.includes("reliability")) return "foreign_other";
+        if (f.includes("核安全法") || f.includes("放射性污染防治法")) return "domestic_law";
+        if (f.includes("gb") || f.includes("gbz") || f.includes("hj") || f.includes("wst")) return "domestic_standard";
+        return "domestic_guideline";
+    }
+
+    const regulations = allFiles.map(filename => {
+        const { name, year } = getDisplayNameAndYear(filename);
+        const category = getCategory(filename);
+        let desc = "";
+        if (category === "foreign_icrp") desc = "国际放射防护委员会建议书，辐射防护理论核心。";
+        else if (category === "foreign_other") desc = "国际组织报告或专业文献，提供剂量学与防护参考。";
+        else if (category === "domestic_law") desc = "国家法律，最高效力层级。";
+        else if (category === "domestic_standard") desc = "强制性或推荐性标准，技术规范依据。";
+        else desc = "部门规章、公告或技术导则，具体管理要求。";
+        return { filename, displayName: name, year, category, desc };
+    });
+
+    const dataMap = {
+        foreign_icrp: regulations.filter(r => r.category === "foreign_icrp"),
+        foreign_other: regulations.filter(r => r.category === "foreign_other"),
+        domestic_law: regulations.filter(r => r.category === "domestic_law"),
+        domestic_standard: regulations.filter(r => r.category === "domestic_standard"),
+        domestic_guideline: regulations.filter(r => r.category === "domestic_guideline")
+    };
+
+    let currentMain = "foreign";
+    let currentSub = "icrp";
+
+    const subConfig = {
+        foreign: [
+            { key: "icrp", label: "ICRP报告", dataKey: "foreign_icrp" },
+            { key: "other", label: "其他国际报告", dataKey: "foreign_other" }
+        ],
+        domestic: [
+            { key: "law", label: "法律", dataKey: "domestic_law" },
+            { key: "standard", label: "标准 (GB/GBZ/HJ/WST)", dataKey: "domestic_standard" },
+            { key: "guideline", label: "导则·公告·规定", dataKey: "domestic_guideline" }
+        ]
+    };
+
+    function renderSubNav() {
+        const container = document.getElementById("subNav");
+        const items = subConfig[currentMain];
+        if (!items) return;
+        let html = '';
+        items.forEach(item => {
+            const activeClass = (currentSub === item.key) ? 'active' : '';
+            html += `<button class="sub-btn ${activeClass}" data-sub="${item.key}">${item.label}</button>`;
+        });
+        container.innerHTML = html;
+        document.querySelectorAll('.sub-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const subKey = btn.getAttribute('data-sub');
+                if (subKey) {
+                    currentSub = subKey;
+                    renderSubNav();
+                    renderRegulations();
+                }
+            });
+        });
+    }
+
+    function getCurrentData() {
+        let key = '';
+        if (currentMain === 'foreign') {
+            key = currentSub === 'icrp' ? 'foreign_icrp' : 'foreign_other';
+        } else {
+            if (currentSub === 'law') key = 'domestic_law';
+            else if (currentSub === 'standard') key = 'domestic_standard';
+            else key = 'domestic_guideline';
+        }
+        return dataMap[key] || [];
+    }
+
+    function renderRegulations() {
+        const grid = document.getElementById("regGrid");
+        const list = getCurrentData();
+        if (!list.length) {
+            grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem;">暂无此类卷宗</div>`;
+            return;
+        }
+        let html = '';
+        list.forEach(reg => {
+            const filePath = `files/${encodeURIComponent(reg.filename)}`;
+            html += `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>${escapeHtml(reg.displayName)}</h3>
+                        <div class="meta">${reg.year || "年份不详"}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="desc">${escapeHtml(reg.desc)}</div>
+                        <a class="btn btn-primary" href="${filePath}" download>下载原文件</a>
+                    </div>
+                </div>
+            `;
+        });
+        grid.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function initMainEvents() {
+        const btns = document.querySelectorAll('.main-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const main = btn.getAttribute('data-main');
+                if (main === currentMain) return;
+                currentMain = main;
+                if (currentMain === 'foreign') currentSub = 'icrp';
+                else currentSub = 'law';
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderSubNav();
+                renderRegulations();
+            });
+        });
+    }
+
+    // JSONBin 评论
+    const JSONBIN_API_KEY = "$2a$10$qb5Ito0mNOEiGFgz6zfKmupIpRbUto/WqDANOZtk2G9VuPL97MuAe";
+    const BIN_ID = "69c1408faa77b81da90f4490";
+    const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+    let commentsCache = [];
+
+    async function loadComments() {
+        try {
+            const response = await fetch(BASE_URL, {
+                headers: { "X-Master-Key": JSONBIN_API_KEY }
+            });
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            const record = data.record;
+            if (record && record.comments && Array.isArray(record.comments)) {
+                commentsCache = record.comments;
+            } else {
+                commentsCache = [];
+            }
+            renderCommentList();
+        } catch (err) {
+            console.warn("评论加载失败", err);
+            document.getElementById("globalCommentList").innerHTML = `<div style="text-align:center;">⚠️ 无法连接评论密卷</div>`;
+        }
+    }
+
+    function renderCommentList() {
+        const container = document.getElementById("globalCommentList");
+        if (!commentsCache.length) {
+            container.innerHTML = `<div style="text-align:center; color:#aa9c84;">暂无评论，请留下您的印记</div>`;
+            return;
+        }
+        let html = '';
+        [...commentsCache].reverse().forEach(c => {
+            html += `
+                <div class="comment-item">
+                    <div><span class="comment-name">${escapeHtml(c.name)}</span><span class="comment-time">${c.time || ''}</span></div>
+                    <div class="comment-text">${escapeHtml(c.text)}</div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    async function saveComments() {
+        try {
+            const payload = { comments: commentsCache };
+            const response = await fetch(BASE_URL, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Master-Key": JSONBIN_API_KEY
+                },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) throw new Error();
+            return true;
+        } catch (err) {
+            alert("评论发送失败，请稍后重试");
+            return false;
+        }
+    }
+
+    async function addComment(name, text) {
+        if (!text.trim()) {
+            alert("请输入评论内容");
+            return false;
+        }
+        const newComment = {
+            name: name.trim() || "匿名",
+            text: text.trim(),
+            time: new Date().toLocaleString('zh-CN')
+        };
+        commentsCache.push(newComment);
+        const ok = await saveComments();
+        if (ok) {
+            renderCommentList();
+            return true;
+        } else {
+            commentsCache.pop();
+            return false;
+        }
+    }
+
+    function bindComment() {
+        const submitBtn = document.getElementById('submitCommentBtn');
+        submitBtn.addEventListener('click', async () => {
+            const nameInput = document.getElementById('commentName');
+            const msgInput = document.getElementById('commentMsg');
+            const name = nameInput.value;
+            const msg = msgInput.value;
+            const success = await addComment(name, msg);
+            if (success) {
+                msgInput.value = '';
+            }
+        });
+    }
+
+    function init() {
+        renderSubNav();
+        renderRegulations();
+        initMainEvents();
+        loadComments();
+        bindComment();
+    }
+    init();
+</script>
+</body>
+</html>
